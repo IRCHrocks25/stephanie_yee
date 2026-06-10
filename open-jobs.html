@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Jobs — Willow Tree Recruiting</title>
+<style>
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Light.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Book.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Regular.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Heavy.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Avenir'; src: url('Avenir_Black.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --ivory:      #F8F8F8;
+  --warm-white: #F4F2EE;
+  --linen:      #EFEBE5;
+  --parchment:  #DCD6CE;
+  --ink:        #1A1F1A;
+  --espresso:   #2E3A2E;
+  --green:      #2D4A35;
+  --green-mid:  #3D6147;
+  --green-lt:   #6A9475;
+  --green-pale: #EBF1EC;
+  --gold:       #B8924A;
+  --gold-lt:    #D4AF72;
+  --bronze:     #8B6340;
+  --fog:        #5A6560;
+  --mist:       #9AA89D;
+  --dark-bg:    #141A15;
+  --dark-sect:  #1A2119;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ivory);color:var(--ink);font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-weight:300;font-size:18px;line-height:1.55;overflow-x:hidden;cursor:none;font-feature-settings:'lnum' 1, 'tnum' 0;font-variant-numeric:lining-nums;text-wrap:pretty;}
+
+#cdot{width:8px;height:8px;background:var(--green);border-radius:50%;position:fixed;top:0;left:0;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+#cring{width:34px;height:34px;border:1px solid rgba(45,74,53,.5);border-radius:50%;position:fixed;top:0;left:0;z-index:9998;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+body.hov #cdot{width:16px;height:16px;}
+body.hov #cring{width:52px;height:52px;}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .85s ease,transform .85s ease;}
+.rv.show{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.22s;}.d3{transition-delay:.36s;}.d4{transition-delay:.5s;}
+
+.eyebrow{display:block;font-size:17px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+
+.btn-primary{display:inline-block;background:var(--green);color:#FFFFFF;font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:18px 40px;text-decoration:none;transition:background .3s,transform .25s;cursor:none;}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);}
+.btn-icon{width:14px;height:14px;margin-right:8px;vertical-align:-2px;}
+
+/* NAV */
+nav{position:absolute;top:0;width:100%;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:26px 72px;}
+.nav-logo{display:inline-flex;align-items:center;text-decoration:none;}
+.nav-links{display:flex;gap:40px;align-items:center;}
+.nav-links a{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:14px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,247,244,.85);text-decoration:none;transition:color .25s;}
+.nav-links a:hover{color:#FFFFFF;}
+.nav-cta{background:var(--green)!important;color:#FFFFFF!important;padding:11px 22px;font-weight:700!important;transition:background .3s!important;}
+.nav-cta:hover{background:var(--green-mid)!important;}
+
+/* HERO */
+.jobs-hero{position:relative;background:var(--dark-bg);min-height:520px;display:flex;align-items:center;overflow:hidden;padding:140px 72px 80px;}
+.jobs-hero::before{content:"";position:absolute;inset:0;background:url("https://res.cloudinary.com/dcuswyfur/image/upload/v1779715459/HeroBackground222_xkgkmh.jpg") center center / cover no-repeat;opacity:0.4;z-index:0;}
+.jobs-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,26,21,.55) 0%,rgba(20,26,21,.85) 100%);z-index:0;}
+.jobs-hero-grain{position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");background-size:260px;opacity:.55;z-index:1;}
+.jobs-hero-inner{position:relative;z-index:2;max-width:980px;margin:0 auto;text-align:center;}
+.jobs-hero-eyebrow{font-size:15px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px;display:block;}
+.jobs-hero h1{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:clamp(40px,5vw,72px);font-weight:200;line-height:1.05;letter-spacing:.04em;color:#F4F7F4;margin-bottom:28px;}
+.jobs-hero h1 .accent{color:var(--gold-lt);font-weight:400;}
+.jobs-hero p{font-size:18px;font-weight:300;line-height:1.55;color:rgba(244,247,244,.75);max-width:700px;margin:0 auto;}
+.jobs-hero p a{color:var(--gold-lt);text-decoration:underline;text-underline-offset:4px;}
+.jobs-hero p a:hover{color:#FFFFFF;}
+
+/* SEARCH */
+.search-wrap{background:var(--warm-white);padding:48px 72px;border-bottom:1px solid var(--parchment);}
+.search-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr auto;gap:16px;align-items:center;}
+.search-field{position:relative;}
+.search-field svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--mist);width:18px;height:18px;}
+.search-input{width:100%;padding:18px 18px 18px 50px;background:#FFFFFF;border:1px solid var(--parchment);font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:16px;font-weight:400;color:var(--ink);outline:none;transition:border-color .25s,box-shadow .25s;cursor:none;}
+.search-input::placeholder{color:var(--mist);}
+.search-input:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-pale);}
+.search-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#FFFFFF;border:none;font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:18px 36px;cursor:none;transition:background .3s,transform .25s;}
+.search-btn:hover{background:var(--green-mid);transform:translateY(-2px);}
+
+/* FILTERS */
+.filter-row{max-width:1100px;margin:24px auto 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.filter-label{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fog);margin-right:8px;}
+.filter-pill{background:#FFFFFF;border:1px solid var(--parchment);padding:8px 18px;font-size:13px;font-weight:500;color:var(--espresso);cursor:none;transition:all .25s;}
+.filter-pill:hover{border-color:var(--green-lt);color:var(--green);}
+.filter-pill.active{background:var(--green);border-color:var(--green);color:#FFFFFF;}
+
+/* JOBS LIST */
+.jobs-list{max-width:1100px;margin:0 auto;padding:72px 72px;}
+.jobs-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--parchment);}
+.jobs-count{font-size:14px;font-weight:500;color:var(--fog);letter-spacing:.05em;}
+.jobs-count strong{color:var(--green);font-weight:700;}
+.sort-select{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:13px;font-weight:500;color:var(--espresso);background:#FFFFFF;border:1px solid var(--parchment);padding:10px 16px;cursor:none;outline:none;}
+
+.job-card{display:block;padding:32px 36px;border:1px solid var(--parchment);background:#FFFFFF;text-decoration:none;color:inherit;margin-bottom:14px;position:relative;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none;}
+.job-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.job-card:hover{box-shadow:0 8px 24px rgba(20,30,22,.06);border-color:var(--green-lt);}
+.job-card:hover::before{transform:scaleY(1);}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:14px;}
+.job-title-wrap{flex:1;}
+.job-title{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:24px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:6px;letter-spacing:.02em;transition:color .25s;}
+.job-card:hover .job-title{color:var(--green);}
+.job-location{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:6px;}
+.job-location svg{width:14px;height:14px;}
+.job-date{font-size:13px;font-weight:500;color:var(--mist);letter-spacing:.04em;white-space:nowrap;flex-shrink:0;}
+.job-desc{font-size:16px;font-weight:300;line-height:1.55;color:var(--fog);margin-bottom:18px;}
+.job-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.job-salary{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--green);background:var(--green-pale);padding:6px 14px;}
+.job-tag{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fog);background:var(--warm-white);border:1px solid var(--parchment);padding:6px 12px;}
+.job-arrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-left:auto;transition:gap .3s;}
+.job-arrow::after{content:"→";font-size:14px;}
+.job-card:hover .job-arrow{gap:14px;}
+
+/* No results */
+.no-results{text-align:center;padding:80px 24px;color:var(--mist);font-size:18px;font-weight:300;display:none;}
+.no-results.show{display:block;}
+
+/* PAGINATION */
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px;}
+.page-btn{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border:1px solid var(--parchment);font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:14px;font-weight:600;color:var(--espresso);cursor:none;transition:all .25s;}
+.page-btn:hover{border-color:var(--green-lt);color:var(--green);}
+.page-btn.active{background:var(--green);border-color:var(--green);color:#FFFFFF;}
+.page-btn.arrow svg{width:16px;height:16px;}
+
+/* CTA */
+.cta-strip{background:var(--warm-white);border-top:1px solid var(--parchment);padding:120px 72px;position:relative;overflow:hidden;}
+.cta-strip::after{content:"";position:absolute;bottom:-40px;left:-20px;width:480px;height:640px;background:url("https://res.cloudinary.com/dcuswyfur/image/upload/v1775609706/elementstephanie_qwtf69.png") bottom left / contain no-repeat;opacity:0.09;pointer-events:none;z-index:0;}
+.cta-strip > *{position:relative;z-index:1;}
+.cta-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;}
+.cta-strip-text{flex:1;min-width:280px;}
+.cta-strip h2{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:clamp(24px,2.6vw,38px);font-weight:200;line-height:1.2;color:var(--ink);margin-bottom:10px;letter-spacing:.04em;}
+.cta-strip h2 .accent{color:var(--green);font-weight:500;}
+.cta-strip p{font-size:16px;color:var(--fog);}
+
+/* FOOTER */
+footer{background:var(--dark-sect);color:#FFFFFF;padding:72px 72px 32px;}
+.footer-top{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
+.f-brand .f-logo{display:inline-block;margin-bottom:18px;text-decoration:none;}
+.f-brand .f-logo img{height:48px;width:auto;display:block;}
+.f-tagline{font-size:16px;font-weight:300;line-height:1.8;color:rgba(244,247,244,.65);max-width:340px;margin-bottom:22px;}
+.f-contact{font-size:15px;line-height:1.85;color:rgba(244,247,244,.65);}
+.f-contact a{color:rgba(244,247,244,.85);text-decoration:none;display:block;transition:color .25s;}
+.f-contact a:hover{color:#FFFFFF;}
+.f-addr{font-size:13px;color:rgba(244,247,244,.45);margin-top:10px;letter-spacing:.04em;}
+.f-col h5{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:18px;}
+.f-col ul{list-style:none;}
+.f-col li{margin-bottom:10px;}
+.f-col a{font-size:15px;color:rgba(244,247,244,.65);text-decoration:none;transition:color .25s;}
+.f-col a:hover{color:#FFFFFF;}
+.footer-bottom{max-width:1320px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.f-copy{font-size:13px;color:rgba(244,247,244,.4);}
+.f-legal{display:flex;gap:26px;}
+.f-legal a{font-size:13px;color:rgba(244,247,244,.4);text-decoration:none;transition:color .25s;}
+.f-legal a:hover{color:#FFFFFF;}
+
+/* RESPONSIVE */
+/* ── HAMBURGER + MOBILE MENU ── */
+.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:301;position:relative;}
+.mobile-menu-btn span{display:block;width:26px;height:2px;background:#FFFFFF;margin:6px 0;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .25s;border-radius:1px;}
+body.menu-open .mobile-menu-btn span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+body.menu-open .mobile-menu-btn span:nth-child(2){opacity:0;}
+body.menu-open .mobile-menu-btn span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.mobile-menu{position:fixed;top:0;right:0;width:100%;max-width:380px;height:100vh;background:var(--dark-bg);z-index:299;padding:100px 36px 36px;transform:translateX(100%);transition:transform .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;gap:6px;box-shadow:-20px 0 60px rgba(0,0,0,.4);}
+body.menu-open .mobile-menu{transform:translateX(0);}
+.mobile-menu a{font-family:'Avenir','Avenir Next','Century Gothic',sans-serif;font-size:18px;font-weight:500;letter-spacing:.08em;color:#F4F7F4;text-decoration:none;padding:18px 0;border-bottom:1px solid rgba(106,148,117,.18);transition:color .25s,padding-left .25s;}
+.mobile-menu a:hover{color:var(--gold-lt);padding-left:8px;}
+.mobile-menu a.mobile-cta{background:var(--green);color:#FFFFFF;border:none;padding:18px 24px;text-align:center;margin-top:18px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:13px;}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:298;opacity:0;pointer-events:none;transition:opacity .35s;}
+body.menu-open .mobile-overlay{opacity:1;pointer-events:auto;}
+
+@media(max-width:1024px){
+  nav{padding:22px 36px;}
+  .jobs-hero{padding:130px 36px 70px;}
+  .search-wrap{padding:40px 36px;}
+  .jobs-list{padding:60px 36px;}
+  .cta-strip{padding:64px 36px;}
+  footer{padding:64px 36px 30px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:48px;}
+}
+
+@media(max-width:768px){
+  body{font-size:17px;}
+  nav{padding:16px 22px;}
+  .nav-logo img{height:46px!important;}
+  .nav-links{display:none!important;}
+  .mobile-menu-btn{display:block;}
+
+  .jobs-hero{min-height:auto;padding:110px 22px 56px;}
+  .jobs-hero h1{font-size:clamp(34px,9vw,52px)!important;}
+  .jobs-hero p{font-size:16px;}
+  .jobs-hero-eyebrow{font-size:13px;letter-spacing:.18em;}
+
+  .search-wrap{padding:28px 22px;}
+  .search-inner{grid-template-columns:1fr;gap:12px;}
+  .search-input{padding:16px 16px 16px 46px;font-size:15px;}
+  .search-btn{padding:16px 28px;font-size:12px;letter-spacing:.18em;}
+  .filter-row{gap:8px;margin-top:18px;}
+  .filter-pill{padding:7px 14px;font-size:12px;}
+  .filter-label{font-size:11px;width:100%;margin-bottom:4px;margin-right:0;}
+
+  .jobs-list{padding:48px 22px;}
+  .jobs-meta{flex-direction:column;align-items:flex-start;gap:12px;padding-bottom:18px;}
+  .jobs-count{font-size:13px;}
+  .job-card{padding:24px 22px;margin-bottom:12px;}
+  .job-header{flex-direction:column;gap:8px;align-items:flex-start;}
+  .job-title{font-size:19px;line-height:1.3;}
+  .job-location{font-size:12px;}
+  .job-date{font-size:12px;}
+  .job-desc{font-size:15px;line-height:1.7;}
+  .job-tags{gap:6px;}
+  .job-salary,.job-tag{font-size:11px;padding:5px 10px;}
+  .job-arrow{font-size:11px;letter-spacing:.14em;}
+  .pagination{gap:6px;}
+  .page-btn{width:38px;height:38px;}
+
+  .cta-strip{padding:52px 22px;}
+  .cta-strip-inner{flex-direction:column;align-items:flex-start;gap:24px;}
+  .cta-strip h2{font-size:clamp(22px,6vw,30px)!important;}
+  .cta-strip p{font-size:15px;}
+
+  footer{padding:52px 22px 26px;}
+  .footer-top{grid-template-columns:1fr;gap:32px;padding-bottom:36px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px;}
+  .f-brand img{height:44px!important;}
+}
+
+@media(max-width:480px){
+  nav{padding:14px 18px;}
+  .nav-logo img{height:40px!important;}
+  .jobs-hero{padding:100px 18px 48px;}
+  .search-wrap{padding:24px 18px;}
+  .jobs-list{padding:40px 18px;}
+  .cta-strip{padding:44px 18px;}
+  footer{padding:44px 18px 22px;}
+}
+
+@media(hover:none) and (pointer:coarse){
+  body{cursor:auto;}
+  *{cursor:auto!important;}
+  #cdot,#cring{display:none!important;}
+  a,button,input,select{cursor:pointer!important;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}
+img,video{max-width:100%;}
+
+
+/* ── ORPHAN KILLER + BALANCED HEADLINES ── */
+h1,h2,h3,h4,h5,h6,.jobs-hero h1,.cta-strip h2,.job-title{text-wrap:balance;}
+p,.jobs-hero p,.cta-strip p,.job-desc,.f-tagline{text-wrap:pretty;}
+</style>
+</head>
+<body>
+
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1775606570/wtbanner_1_v5kh8i.png" alt="Willow Tree Recruiting" style="height:58px;width:auto;display:block;">
+  </a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#methodology">Our Approach</a>
+    <a href="index.html#serve">Who We Serve</a>
+    <a href="open-jobs.html" style="color:#FFFFFF;font-weight:700;">Jobs</a>
+    <a href="index.html#contact" class="nav-cta">Book a Call</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about">About</a>
+  <a href="index.html#methodology">Our Approach</a>
+  <a href="index.html#serve">Who We Serve</a>
+  <a href="open-jobs.html">Jobs</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="index.html#contact" class="mobile-cta">Book a Call</a>
+</div>
+
+<!-- HERO -->
+<section class="jobs-hero">
+  <div class="jobs-hero-grain"></div>
+  <div class="jobs-hero-inner">
+    <span class="jobs-hero-eyebrow">Open Positions</span>
+    <h1>Open <span class="accent">Jobs</span></h1>
+    <p>Willow Tree Recruiting has the hospitality industry's most exciting portfolio of clients and opportunities — we only feature a selection of our current roles on the website, so please <a href="index.html#contact">contact us</a> to discuss in more detail what you are looking for.</p>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="What opportunities are you looking for?">
+    </div>
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <input type="text" class="search-input" id="locationInput" placeholder="Location">
+    </div>
+    <button class="search-btn" onclick="searchJobs()">Search</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-pill active" data-filter="all">All Roles</button>
+    <button class="filter-pill" data-filter="general manager">General Manager</button>
+    <button class="filter-pill" data-filter="chef">Chef</button>
+    <button class="filter-pill" data-filter="executive">Executive</button>
+    <button class="filter-pill" data-filter="vp">VP / Director</button>
+  </div>
+</div>
+
+<!-- JOBS LIST -->
+<div class="jobs-list">
+  <div class="jobs-meta">
+    <div class="jobs-count"><strong id="jobCount">8</strong> open positions</div>
+    <select class="sort-select" id="sortSelect">
+      <option value="recent">Sort: Most Recent</option>
+      <option value="salary">Sort: Highest Salary</option>
+      <option value="title">Sort: Job Title</option>
+    </select>
+  </div>
+
+  <div id="jobsContainer">
+    <a href="#" class="job-card rv" data-title="VP of Business Development" data-location="New York, NY" data-category="vp">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">VP of Business Development</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            New York, NY
+          </div>
+        </div>
+        <div class="job-date">May 20, 2026</div>
+      </div>
+      <p class="job-desc">VP of Development — Upscale Restaurant Group. Join a renowned hospitality group as the VP of Development, overseeing new restaurant development, construction projects, facilities operations, and strategic growth initiatives, with competitive compensation.</p>
+      <div class="job-tags">
+        <span class="job-salary">$250K – $300K + Bonus</span>
+        <span class="job-tag">Upscale Restaurant Group</span>
+        <span class="job-tag">Full-Time</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Restaurant General Manager Upscale" data-location="San Francisco, CA" data-category="general manager">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Restaurant General Manager — Upscale</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            San Francisco, CA
+          </div>
+        </div>
+        <div class="job-date">May 19, 2026</div>
+      </div>
+      <p class="job-desc">General Manager — Upscale Mediterranean Restaurant. Join this local upscale Mediterranean restaurant as the General Manager, responsible for leading daily restaurant operations, excellence, developing the team, and supporting continued business success.</p>
+      <div class="job-tags">
+        <span class="job-salary">$100K – $110K + Bonus</span>
+        <span class="job-tag">Mediterranean</span>
+        <span class="job-tag">Upscale</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="General Manager Upscale Restaurant" data-location="New York, NY" data-category="general manager">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">General Manager — Upscale Restaurant</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            New York, NY
+          </div>
+        </div>
+        <div class="job-date">May 19, 2026</div>
+      </div>
+      <p class="job-desc">Join this renowned restaurant group as the General Manager, responsible for overseeing all restaurant operations, complete with excellent benefits, salary, and career growth opportunity. Known for delivering exceptional guest experiences.</p>
+      <div class="job-tags">
+        <span class="job-salary">$100K – $110K + Bonus</span>
+        <span class="job-tag">Renowned Group</span>
+        <span class="job-tag">Full-Time</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Chef de Cuisine Italian West Village" data-location="New York, NY" data-category="chef">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Chef de Cuisine — Italian, West Village</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            New York, NY
+          </div>
+        </div>
+        <div class="job-date">May 19, 2026</div>
+      </div>
+      <p class="job-desc">Chef de Cuisine — Upscale Italian Restaurant. Join this renowned restaurant group as the Chef de Cuisine, responsible for overseeing all restaurant operations, complete with excellent benefits, salary, and career growth opportunity.</p>
+      <div class="job-tags">
+        <span class="job-salary">$100K – $110K + Bonus</span>
+        <span class="job-tag">Italian</span>
+        <span class="job-tag">Upscale</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Restaurant Assistant General Manager West Village Fine Dining" data-location="New York, NY" data-category="general manager">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Assistant General Manager — West Village, Fine Dining</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            New York, NY
+          </div>
+        </div>
+        <div class="job-date">May 19, 2026</div>
+      </div>
+      <p class="job-desc">Assistant General Manager — Fine Dining Restaurant. Join this renowned restaurant group as the Assistant General Manager, responsible for supporting the General Manager in overseeing all restaurant operations.</p>
+      <div class="job-tags">
+        <span class="job-salary">$80K – $85K + Bonus</span>
+        <span class="job-tag">Fine Dining</span>
+        <span class="job-tag">West Village</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Restaurant General Manager Quick Service" data-location="Palo Alto, CA" data-category="general manager">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Restaurant General Manager — Quick Service</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Palo Alto, CA
+          </div>
+        </div>
+        <div class="job-date">May 14, 2026</div>
+      </div>
+      <p class="job-desc">General Manager — Upscale Fast Casual Restaurant. Join this fast-growing, chef-driven fast-casual restaurant group as General Manager, leading a high-volume operation known for scratch-made food, strong hospitality, and a modern guest experience.</p>
+      <div class="job-tags">
+        <span class="job-salary">$80K – $90K + Bonus</span>
+        <span class="job-tag">Fast Casual</span>
+        <span class="job-tag">Chef-Driven</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Multi-Unit General Manager DC Upscale Restaurant Group" data-location="Washington, DC" data-category="general manager">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Multi-Unit General Manager — Upscale Restaurant Group</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Washington, DC
+          </div>
+        </div>
+        <div class="job-date">May 12, 2026</div>
+      </div>
+      <p class="job-desc">Multi-Unit General Manager — Upscale Restaurant Group. Join this renowned, hospitality-driven restaurant group as a Multi-Unit General Manager, overseeing operations across multiple concepts. This role focuses on developing leaders, driving performance, and delivering at scale.</p>
+      <div class="job-tags">
+        <span class="job-salary">$120K – $140K + Bonus</span>
+        <span class="job-tag">Multi-Unit</span>
+        <span class="job-tag">Upscale</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+
+    <a href="#" class="job-card rv" data-title="Executive Chef Boutique Hotel" data-location="Los Angeles, CA" data-category="chef executive">
+      <div class="job-header">
+        <div class="job-title-wrap">
+          <h3 class="job-title">Executive Chef — Boutique Hotel</h3>
+          <div class="job-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Los Angeles, CA
+          </div>
+        </div>
+        <div class="job-date">May 8, 2026</div>
+      </div>
+      <p class="job-desc">Executive Chef — Award-Winning Boutique Hotel. Join this acclaimed boutique hotel as Executive Chef, leading a creative team and crafting seasonal menus rooted in California cuisine, with full creative ownership of all F&B outlets.</p>
+      <div class="job-tags">
+        <span class="job-salary">$150K – $180K + Bonus</span>
+        <span class="job-tag">Boutique Hotel</span>
+        <span class="job-tag">Award-Winning</span>
+        <span class="job-arrow">View Role</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="no-results" id="noResults">No positions match your search. Try different keywords or <a href="index.html#contact" style="color:var(--green);">contact us directly</a>.</div>
+
+  <div class="pagination">
+    <button class="page-btn arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn">2</button>
+    <button class="page-btn">3</button>
+    <button class="page-btn arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="cta-strip-inner">
+    <div class="cta-strip-text">
+      <h2>Don't see the right role? <span class="accent">Let's talk.</span></h2>
+      <p>Our team places exceptional hospitality talent every week — many roles never make the public list.</p>
+    </div>
+    <a href="index.html#contact" class="btn-primary">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      Contact Us
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand">
+      <a href="index.html" class="f-logo">
+        <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1775606570/wtbanner_1_v5kh8i.png" alt="Willow Tree Recruiting" style="filter:brightness(0) invert(1);">
+      </a>
+      <p class="f-tagline">We don't place candidates. We cultivate extraordinary hospitality.</p>
+      <div class="f-contact">
+        <a href="mailto:info@willowtreerecruiting.com">info@willowtreerecruiting.com</a>
+        <a href="tel:4156941950">415-694-1950</a>
+        <p class="f-addr">San Francisco, CA · P.O. Box 475714, San Francisco, CA 94147</p>
+      </div>
+    </div>
+    <div class="f-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#methodology">Our Approach</a></li>
+        <li><a href="index.html#serve">Who We Serve</a></li>
+        <li><a href="open-jobs.html">Jobs</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Follow</h5>
+      <ul>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+      <h5 style="margin-top:28px;">Legal</h5>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="index.html#contact">Book a Call</a></li>
+        <li><a href="mailto:info@willowtreerecruiting.com">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2026 Willow Tree Recruiting · San Francisco, CA</div>
+    <div class="f-legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms and Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* cursor */
+  var cdot = document.getElementById('cdot'), cring = document.getElementById('cring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; });
+  (function loop(){
+    cdot.style.left = mx+'px'; cdot.style.top = my+'px';
+    rx += (mx-rx)*.11; ry += (my-ry)*.11;
+    cring.style.left = rx+'px'; cring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,input,select,.job-card,.filter-pill,.page-btn').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ document.body.classList.add('hov'); });
+    el.addEventListener('mouseleave', function(){ document.body.classList.remove('hov'); });
+  });
+
+  /* reveal */
+  var rvEls = document.querySelectorAll('.rv');
+  rvEls.forEach(function(el){ el.classList.add('show'); });
+
+  /* search & filter */
+  var input = document.getElementById('searchInput');
+  var locInput = document.getElementById('locationInput');
+  var jobCards = document.querySelectorAll('.job-card');
+  var jobCount = document.getElementById('jobCount');
+  var noResults = document.getElementById('noResults');
+  var activeFilter = 'all';
+
+  function applyFilters() {
+    var query = input.value.trim().toLowerCase();
+    var locQuery = locInput.value.trim().toLowerCase();
+    var visibleCount = 0;
+    jobCards.forEach(function(card){
+      var title = (card.dataset.title || '').toLowerCase();
+      var location = (card.dataset.location || '').toLowerCase();
+      var category = (card.dataset.category || '').toLowerCase();
+      var text = card.textContent.toLowerCase();
+      var matchQuery = !query || title.includes(query) || text.includes(query);
+      var matchLoc = !locQuery || location.includes(locQuery);
+      var matchFilter = activeFilter === 'all' || category.includes(activeFilter);
+      if (matchQuery && matchLoc && matchFilter) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    jobCount.textContent = visibleCount;
+    noResults.classList.toggle('show', visibleCount === 0);
+  }
+
+  window.searchJobs = applyFilters;
+  input.addEventListener('input', applyFilters);
+  locInput.addEventListener('input', applyFilters);
+  input.addEventListener('keypress', function(e){ if (e.key === 'Enter') applyFilters(); });
+  locInput.addEventListener('keypress', function(e){ if (e.key === 'Enter') applyFilters(); });
+
+  document.querySelectorAll('.filter-pill').forEach(function(pill){
+    pill.addEventListener('click', function(){
+      document.querySelectorAll('.filter-pill').forEach(function(p){ p.classList.remove('active'); });
+      pill.classList.add('active');
+      activeFilter = pill.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  /* mobile menu */
+  var menuBtn = document.getElementById('mobileMenuBtn');
+  var overlay = document.getElementById('mobileOverlay');
+  var menu = document.getElementById('mobileMenu');
+  if (menuBtn && overlay && menu) {
+    menuBtn.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
+    overlay.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+    });
+  }
+})();
+</script>
+</body>
+</html>
